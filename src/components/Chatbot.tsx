@@ -25,6 +25,15 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateHome }) => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const suggestions = [
+    "Je recherche une Ford Fiesta de 2023. C'est un modèle Manual avec un moteur 1.0L Petrol. Elle a 13427 miles au compteur, consomme 65.7 mpg et a une taxe annuelle de 145 €. Quel est son prix ?",
+    "Je recherche une Golf de 2020. C'est un modèle Manual avec un moteur 1.0L Petrol. Elle a 13427 miles au compteur, consomme 65.7 mpg et a une taxe annuelle de 145 £. Quel est son prix ?",
+  ];
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setInputValue(suggestion);
+  };
+
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -212,6 +221,23 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateHome }) => {
             >
               <Send className="w-5 h-5" />
             </button>
+          </div>
+          
+          {/* Suggestions */}
+          <div className="mt-4">
+            <p className="text-xs text-slate-400 mb-2">Suggestions :</p>
+            <div className="flex flex-wrap gap-2">
+              {suggestions.map((suggestion, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleSuggestionClick(suggestion)}
+                  className="text-left text-xs text-slate-300 hover:text-white bg-slate-800/50 hover:bg-slate-700/50 rounded-lg px-3 py-1.5 transition-all duration-200 max-w-[300px] truncate"
+                  title={suggestion}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
