@@ -45,7 +45,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateHome }) => {
   const simulateAPICall = async (userMessage: string): Promise<string> => {
     try {
       const apiUrl = import.meta.env.PROD 
-        ? 'https://c80d-34-143-184-251.ngrok-free.app/predict'
+        ? 'https://c1d6-34-143-184-251.ngrok-free.app/predict'
         : '/api/predict';
 
       const response = await fetch(apiUrl, {
