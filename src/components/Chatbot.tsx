@@ -44,17 +44,23 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateHome }) => {
 
   const simulateAPICall = async (userMessage: string): Promise<string> => {
     try {
-      const response = await fetch('/api/predict', {
+      const apiUrl = import.meta.env.PROD 
+        ? 'https://c80d-34-143-184-251.ngrok-free.app/predict'
+        : '/api/predict';
+
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({ text: userMessage }),
       });
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => null);
-        throw new Error(errorData?.detail || 'Erreur lors de la requête API');
+        console.error('API Error:', response.status, errorData);
+        throw new Error(errorData?.detail || `Erreur API (${response.status})`);
       }
 
       const data = await response.json();
