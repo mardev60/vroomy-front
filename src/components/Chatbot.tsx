@@ -71,7 +71,7 @@ const Chatbot: React.FC<ChatbotProps> = ({ onNavigateHome }) => {
       if (error instanceof TypeError && error.message === 'Failed to fetch') {
         return "Je suis hors service pour le moment ! 😴 Marou m'a coupé les vivres car je suis trop gourmand en ressources... Il faut qu'il me réactive ! En attendant, tu peux lui envoyer un petit message pour qu'il me redonne de l'énergie ! 💪";
       }
-      return "Je m'excuse, mais je rencontre quelques difficultés techniques. Veuillez réessayer dans un moment.";
+      return "Je suis hors service pour le moment ! 😴 Marou m'a coupé les vivres car je suis trop gourmand en ressources... Il faut qu'il me réactive ! En attendant, tu peux lui envoyer un petit message pour qu'il me redonne de l'énergie ! 💪";
     }
   };
 
